@@ -1,3 +1,14 @@
+def linesTest(do_strip=False):
+    f = open('test' + '.txt', 'r')
+    lines = f.readlines()
+
+    if do_strip:
+        lines = [x.strip() for x in lines]
+
+    f.close()
+    return lines
+
+
 class Input:
     def __init__(self, dayNr):
         self.dayNr = dayNr
@@ -12,3 +23,5 @@ class Input:
 
         f.close()
         return lines
+
+
