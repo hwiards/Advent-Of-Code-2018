@@ -10,24 +10,11 @@ def part1(lines):
         aktLine = line
         while changed:
             changed = False
-            lenght = len(aktLine)
-            # print(aktLine)
-            # for start in range((len(aktLine) - 1)):
-            #     # print("start: ", start, " lenLine: ", len(aktLine) - 1," Len(line): ", len(aktLine))
-            #     if aktLine[start].islower() and aktLine[start + 1].isupper():
-            #         if aktLine[start] == aktLine[start + 1].lower():
-            #             aktLine = aktLine[:start] + (aktLine[start + 2:] if start + 2 < len(aktLine) else [])
-            #             changed = True
-            #             break
-            #     elif aktLine[start].isupper() and aktLine[start + 1].islower():
-            #         if aktLine[start].lower() == aktLine[start + 1]:
-            #             aktLine = aktLine[:start] + (aktLine[start + 2:] if start + 2 < len(aktLine) else [])
-            #             changed = True
-            #             break
+            length = len(aktLine)
             for start in range(26):
                 ch = chr(ord('a') + start)
                 aktLine = aktLine.replace(ch+ch.upper(),"").replace(ch.upper()+ch,"")
-            if len(aktLine) < lenght:
+            if len(aktLine) < length:
                 changed = True
 
 
@@ -40,8 +27,8 @@ def part2(lines):
         for start in range(26):
             ch = chr(ord('a') + start)
             aktLine = line
-            trimmed = [a for a in aktLine if a.lower() != ch]
-            lenght = part1(["".join(trimmed)])
+            trimmed = aktLine.replace(ch, "").replace(ch.upper(),"")
+            lenght = part1([trimmed])
             if lenght < shortest:
                 shortest = lenght
 
